@@ -1,0 +1,49 @@
+﻿@model Project.Models.ViewModels.LoginVM
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="container">
+    <div class="row" style="background-color:skyblue;">
+
+        <h2 class="text-center alert alert-primary">Login here......</h2>
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.Username, new { @class = "col-form-label col-2" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.Username, new { @class = "form-control r" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.Password, new { @class = "col-form-label col-2" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control r", type = "password" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-10 offset-2 mt-2">
+                    <button type="submit" class="btn btn-primary w-25">Login</button>
+                    <p class="mt-2">
+                        If you have no account, you can Sign Up!!
+                        @Html.ActionLink("Click Here..", "Register")
+                    </p>
+                </div>
+            </div>
+
+        }
+
+    </div>
+</div>
+
+
+
+

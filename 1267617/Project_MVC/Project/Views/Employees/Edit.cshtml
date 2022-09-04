@@ -1,0 +1,47 @@
+﻿@model Project.Models.ViewModels.EmployeeRetriveVM
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        <h2 class="alert alert-primary text-center">Update Employee</h2><br/>
+        @using (Html.BeginForm("Edit", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div>
+                @Html.ValidationSummary(true)
+            </div>
+            @Html.HiddenFor(x => x.EmployeeId)
+            @Html.HiddenFor(x => x.Image)
+            <div class="form-group">
+                @Html.LabelFor(x => x.EmployeeName, new { @class = "control-label" })
+                @Html.TextBoxFor(x => x.EmployeeName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.EmployeeName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Address, new { @class = "control-label" })
+                @Html.TextBoxFor(x => x.Address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.PostCode, new { @class = "control-label" })
+                @Html.TextBoxFor(x => x.PostCode, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.PostCode, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Image, new { @class = "control-label" })
+                @Html.TextBoxFor(x => x.Image, new { @class = "form-control", type = "file" })
+                
+                @Html.ValidationMessageFor(x => x.Image, "", new { @class = "text-danger" })
+            </div><br/>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit"><span class="fa fa-save"></span> Update</button>
+            </div>
+        }
+    </div>
+    <div>
+        <a href="@Url.Action("Index","Employees")" class="btn btn-link"><span class="fa fa-arrow-left"></span> Back to list</a>
+    </div>
+</div>
+

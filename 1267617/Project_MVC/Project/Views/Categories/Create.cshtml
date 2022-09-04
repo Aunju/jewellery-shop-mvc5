@@ -1,0 +1,49 @@
+﻿@model Project.Models.Category
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center  alert alert-heading alert-primary">Add New Category</h2><br/>
+        @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "msg", OnComplete = "clearAll" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row mb-1">
+                @Html.LabelFor(x => x.CategoryName, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control form-control-sm r" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.CategoryName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row mb-1">
+                <div class="col-10 offset-2">
+                    <button class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div id="msg">
+                </div>
+            </div>
+        }
+    </div>
+    <div>
+        <a href="@Url.Action("Index","Categories")" class="btn btn-link btn-group-lg"><i class="fa fa-arrow-left"></i> Back to list</a>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+    <script>
+        function clearAll() {
+            $("#form0").trigger("reset");
+        }
+    </script>
+}
+

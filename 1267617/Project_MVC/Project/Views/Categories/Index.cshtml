@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Project.Models.Category>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col">
+        <h2 class="text-center alert alert-heading alert-primary">Category List</h2>
+        <div class="d-flex justify-content-end mb-2">
+            <a href="@Url.Action("Create","Categories")" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New Category</a>
+        </div>
+     
+            <table class="table table-bordered table-striped table-sm table-hover">
+                <thead class="alert alert-success">
+                    <tr>
+                        <th>SL No.</th>
+                        <th>@Html.DisplayNameFor(x => x.CategoryName)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cat in Model.Select((x, i) => new { Data = x, Index = i + 1 }))
+                    {
+                        <tr id="tr-@cat.Index">
+                            <td>@cat.Index</td>
+                            <td>@cat.Data.CategoryName</td>
+                            <td>
+                                <a href="@Url.Action("Edit","Categories",new { id=cat.Data.CategoryId})" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+                                <a href="@Url.Action("Delete","Categories",new { id=cat.Data.CategoryId})" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    </div>
+</div>

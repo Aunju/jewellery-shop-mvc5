@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Project.Models.ViewModels.ItemVM>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col">
+        <h2 class="alert alert-info text-center">Jewellery List</h2>
+
+        @using (Html.BeginForm())
+        {
+    <div class="d-flex justify-content-end">
+        <a href="@Url.Action("Create","Admin")" class="btn btn-primary btn-sm p-2"><i class="fa fa-plus"></i> Add New</a>
+
+        <input type="text" name="search" placeholder="product name..." />
+        <button type="submit" class="btn btn-success btn-sm">Search</button>
+    </div><br/>
+        }
+
+
+        <table class="table table-bordered table-striped table-sm table-hover">
+            <thead class="table-success">
+                <tr>
+                    <th> @Html.ActionLink("Name", "Index", "Items", new { sort = ViewBag.sortBy }, new { })</th>
+                    <th>@Html.DisplayNameFor(x => x.Price)</th>
+                    <th>@Html.DisplayNameFor(x => x.StoreDate)</th>
+                    <th>@Html.DisplayNameFor(x => x.PicturePath)</th>
+                    <th>@Html.DisplayNameFor(x => x.CategoryId)</th>
+                    <th>@Html.DisplayNameFor(x => x.Available)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var t in Model)
+                {
+                    <tr>
+
+                        <td>@Html.DisplayFor(x => t.ItemName)</td>
+                        <td>@Html.DisplayFor(x => t.Price)</td>
+                        <td>@Html.DisplayFor(x => t.StoreDate)</td>
+                        <td>
+                            <img src="@Url.Content(t.PicturePath)" width="50" height="50" />
+                        </td>
+                        <td>@Html.DisplayFor(x => t.CategoryId)</td>
+                        <td>@Html.DisplayFor(x => t.Available)</td>
+                        <td>
+                            <a href="@Url.Action("Edit","Admin",new { id=t.Id})" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+                            <a href="@Url.Action("Delete","Admin",new { id=t.Id})" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.PagedListPager(Model as IPagedList, page => Url.Action("Index", new { page, sort = ViewBag.CurrentSort }))
+    </div>
+</div>

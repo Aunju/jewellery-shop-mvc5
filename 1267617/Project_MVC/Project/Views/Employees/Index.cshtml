@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Project.Models.ViewModels.EmployeeRetriveVM>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="alert alert-info text-center">Employee List</h2>
+        <div class="d-flex justify-content-end">
+            <a href="@Url.Action("Create","Employees")" class="btn btn-primary" style="margin-bottom:5px;">Add New Employee</a>
+        </div>
+        <table class="table table-bordered">
+            <thead class="alert alert-primary">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Post Code</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var emp in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(x =>emp.EmployeeId)</td>
+                        <td>@Html.DisplayFor(x => emp.EmployeeName)</td>
+                        <td>@Html.DisplayFor(x => emp.Address)</td>
+                        <td>@Html.DisplayFor(x => emp.PostCode)</td>
+                        <td>
+                            <img src="@Url.Content(emp.Image)" width="40" />
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit","Employees",new { id=emp.EmployeeId})" class="btn btn-info">Edit</a>
+                            <a href="@Url.Action("Delete","Employees",new { id=emp.EmployeeId})" class="btn btn-danger">Delete</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

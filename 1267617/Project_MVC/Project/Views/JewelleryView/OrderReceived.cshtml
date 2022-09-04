@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "OrderReceived";
+}
+
+
+@using (Html.BeginForm("OrderReceived", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+            }
+
+    <h1 class="text-center bg-success text-light p-3">We have received your order</h1>
+
+<div class="text-center">
+    <img src="~/Images/pic/th (5).jpg" />
+</div>
+
+<br />
+<br />
+<div class="row">
+    <div class="col-5"></div>
+    <div class="col-3">
+        <a href="@Url.Action("Index","Home")" class="btn btn-link btn-group-lg mb-2"><i class="fa fa-arrow-left"></i> Back to list</a>
+    </div>
+    <div class="col-4"></div>
+</div>

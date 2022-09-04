@@ -1,0 +1,75 @@
+﻿@model Project.Models.Items
+@{
+    ViewBag.Title = "Details";
+}
+
+
+@using (Html.BeginForm("Details", "JewelleryView", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <h2 class="text-center alert alert-heading alert-primary">Details</h2>
+    @Html.AntiForgeryToken()
+    <div class="d-flex justify-content-center">
+        <div class="image" style="margin:10px">
+            <img src="@Url.Content(Model.PicturePath)" width="200" height="200" class="img-responsive">
+        </div>
+    </div>
+    <div class="row mb-1">
+        @Html.LabelFor(x => x.ItemName, new { @class = "col-form-label col-form-label-sm col-2 r " })
+        <div class="col-6">
+            @Html.TextBoxFor(x => x.ItemName, new { @class = "form-control form-control-sm" })
+        </div>
+        <div class="col-4">
+            @Html.ValidationMessageFor(x => x.ItemName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row mb-1">
+        @Html.LabelFor(x => x.Category.CategoryName, new { @class = "col-form-label col-form-label-sm col-2 r " })
+        <div class="col-6">
+            @Html.TextBoxFor(x => x.Category.CategoryName, new { @class = "form-control form-control-sm r" })
+        </div>
+        <div class="col-4">
+            @Html.ValidationMessageFor(x => x.Category.CategoryName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row mb-1">
+        @Html.LabelFor(x => x.Price, new { @class = "col-form-label col-form-label-sm col-2 r " })
+        <div class="col-6">
+            @Html.TextBoxFor(x => x.Price, new { @class = "form-control form-control-sm" })
+        </div>
+        <div class="col-4">
+            @Html.ValidationMessageFor(x => x.Price, " ", new { @class = "text-danger" })
+        </div>
+    </div>
+}
+@*<div class="row">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-5">
+        <img src="@Url.Content(Model.PicturePath)" width="150" height="200" class="img-responsive">
+    </div>
+    <div class="col-md-4 m-bgcolor">
+        <div>
+            <h2>Category Name:  @Html.DisplayFor(model => model.Category.CategoryName)</h2>
+            <h3>Product Name: @Html.DisplayFor(model => model.ItemName) </h3>
+            <div>
+                Unit Price: Tk. @Html.DisplayFor(model => model.Price)
+            </div>*@
+<br/>
+<div>
+    <p>
+        @Html.ActionLink("Buy Now", "Create", new { id = Model.Id }, new { @class = "btn btn-info btn-lg" })
+        @Html.ActionLink("Add To Cart", "Cart", "JewelleryView", new { id = Model.Id }, new { @class = "btn btn-success btn-lg" })
+
+    </p>
+</div>
+<div class="d-flex justify-content-start">
+    <a href="@Url.Action("Index","JewelleryView")" class="btn btn-link btn-group-lg mb-2"><i class="fa fa-arrow-left"></i> Back to list</a>
+</div>
+@*</div>
+
+        </div>
+    </div>*@
+
+
